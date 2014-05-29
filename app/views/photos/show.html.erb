@@ -1,10 +1,11 @@
 <div class="page-header">
   <h1>Photo #<%= @photo.id %></h1>
+
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Image url</dt>
-  <dd><%= @photo.image_url %></dd>
+  <dt>Images</dt>
+  <dd><img src="<%= @photo.image_url %>" width="600"></dd>
 
   <dt>Caption</dt>
   <dd><%= @photo.caption %></dd>
@@ -12,4 +13,33 @@
   <dt>User</dt>
   <dd><%= @photo.user_id %></dd>
 
+ <ul>
+  <a href="/create_favorite?photo_id=<%= @photo.id %>&user_id=<%= current_user.id %>" class="btn btn-success"> Like </a>
+  </ul>
+
+
 </dl>
+
+
+<ul>
+  <% @photo.comments.each do |comment| %>
+    <li>
+      <h4><%= User.find(comment.user_id).email %></h4>
+      <p><%= comment.content %></p>
+    </li>
+  <% end %>
+</ul>
+
+
+  <li>
+     <form action="/create_comment">
+       <textarea id="content" name="content" placeholder="Add your comment" class="form-control" rows="3"></textarea>
+
+       <input type="hidden" id="photo_id" name="photo_id" value="<%= @photo.id %>">
+
+       <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
+
+       <input type="submit" value="Create Comment" class="btn btn-primary">
+     </form>
+   </li>
+
