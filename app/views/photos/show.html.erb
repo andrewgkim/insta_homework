@@ -13,12 +13,10 @@
   <dt>User</dt>
   <dd><%= @photo.user_id %></dd>
 
- <ul>
-  <a href="/create_favorite?photo_id=<%= @photo.id %>" class="btn btn-success"> Like </a>
-  </ul>
-
-
 </dl>
+ <div>
+  <a href="/create_favorite?photo_id=<%= @photo.id %>" class="btn btn-success"> Like </a>
+  </div>
 
 
 <ul>
