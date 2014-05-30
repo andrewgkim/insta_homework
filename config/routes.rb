@@ -5,6 +5,11 @@ Rails.application.routes.draw do
 
   root 'photos#index'
 
+  get('/my_wall', { :controller => 'photos', :action => 'my_wall' })
+  get('/my_likes', { :controller => 'photos', :action => 'my_likes' })
+
+
+
   get('/favorites/new', { :controller => 'favorites', :action => 'new' })
   get('/create_favorite', { :controller => 'favorites', :action => 'create' })
 
